@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+  form(ref='uploadForm'
+      id='uploadForm' 
+      action='/upload/justupload' 
+      method='post' 
+      encType="multipart/form-data")
+        input(type="file" name="sampleFile")
+        input(type="submit" value="Upload!")
+

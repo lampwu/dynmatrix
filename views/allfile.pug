@@ -1,0 +1,9 @@
+extends layout
+
+block content
+  h1 Uploaded file catalog
+  ul
+    each singleFile in catalog
+        li
+          a(href='/allfile/file/'+singleFile) #{singleFile}  
+        

@@ -1,0 +1,21 @@
+extends layout
+
+block content
+  h1= title
+  form(action='/uploadmatrix' 
+      method='post' 
+      encType="multipart/form-data")
+        label Dynamic Base Time (mS)
+        br
+        input(type="number" name="baseTime")
+        br
+        br
+        label Dynamic Increase Time (mS)
+        br
+        input(type="number" name="increaseTime")
+        br
+        br
+        input(type="file" name="sampleFile")
+        br
+        br
+        input(type="submit" value="Convert!")

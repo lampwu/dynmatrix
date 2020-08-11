@@ -1,21 +1,18 @@
 extends layout
 
 block content
-  h1= title
-  form(action='/uploadmatrix' 
-      method='post' 
-      encType="multipart/form-data")
-        label Dynamic Base Time (mS)
-        br
-        input(type="number" name="baseTime")
-        br
-        br
-        label Dynamic Increase Time (mS)
-        br
-        input(type="number" name="increaseTime")
-        br
-        br
-        input(type="file" name="sampleFile")
-        br
-        br
-        input(type="submit" value="Convert!")
+  form(action="/uploadmatrix" method="post" enctype="multipart/form-data")
+    label Dynamic base time mS 动态原始时间
+    br
+    br
+    input(type="number" name="basetime")
+    br
+    br
+    label Dynamic increase time mS 动态每次增加时间
+    br
+    br
+    input(type="number" name="increasetime")
+    br
+    br
+    input(type="file" name="avatar")
+    button 上传

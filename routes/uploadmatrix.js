@@ -14,10 +14,10 @@ const myEmitter = new MyEmitter();
 
 /* POST upload listing. */
 
-router.post('/', upload.single('avatar'), function (req, res, next) {
+router.post('/', upload.single('dyn'), function (req, res, next) {
   console.log(req.body)
   let receiveTimes = 0;
-  const file = req.file
+  const file = req.file;
   if (!file) {
     const error = new Error('Please upload a file')
     error.httpStatusCode = 400
@@ -39,13 +39,7 @@ router.post('/', upload.single('avatar'), function (req, res, next) {
   })
 
   res.render('uploadmatrix', { title: "Upload Dynamic Matrix Page "})
-  // req.body will hold the text fields, if there were any
 });
-/*router.post('/', upload.none(), function (req, res, next) {
-  // req.body contains the text fields
-  console.log(req.body.length())
-  res.render('uploadmatrix')
-})*/
 function dataConvert(sourceData,baseTime,increaseTime) {
   let sepData = sourceData.split('\r\n')
   /*console.log(sepData)
@@ -62,12 +56,6 @@ function dataConvert(sourceData,baseTime,increaseTime) {
       testNameAndOutPut = sepData[i+1];
       testDataMaxs = sepData[i+2].split(';'); //split max output voltage
       testDataMins = sepData[i+3].split(';'); //split min output voltage
-      //for(k=0;k<testDataMaxs.length;k++) {
-        //let testDataMax = testDataMaxs[k].split(',');
-        //let testDataMin = testDataMins[k].split(',');
-        /*console.log(testDataMax);
-        console.log(testDataMin);*/
-        //if ( k < testDataMaxs.length-1 ) {
           console.log(testDataMaxs)
           console.log(testDataMaxs.length)
           console.log(Math.sqrt( testDataMaxs.length - 1 ))
@@ -81,8 +69,6 @@ function dataConvert(sourceData,baseTime,increaseTime) {
               maxAndMin.push('\r\n');
             }
           }
-        //}
-      //}
       finalData.push(testTime);
       finalData.push(testNameAndOutPut);
       finalData.push('\r\n');

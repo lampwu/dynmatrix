@@ -68,12 +68,14 @@ function dataConvert(sourceData,baseTime,increaseTime) {
         /*console.log(testDataMax);
         console.log(testDataMin);*/
         //if ( k < testDataMaxs.length-1 ) {
-          console.log(Math.sqrt( testDataMaxs.length ) + 1)
-          for (j = 0; j < Math.sqrt( testDataMaxs.length ) + 1; j++ ) {
-            for ( m = 0; m < Math.sqrt( testDataMaxs.length ) + 1 ; m++) {
-              let testDataMax = testDataMaxs[Math.floor(Math.sqrt( testDataMaxs.length ) ) * j + m ].split(',');
-              let testDataMin = testDataMins[Math.floor(Math.sqrt( testDataMaxs.length ) ) * j + m ].split(',');
-              maxAndMin.push(`${j}A ~ ${m}A`);
+          console.log(testDataMaxs)
+          console.log(testDataMaxs.length)
+          console.log(Math.sqrt( testDataMaxs.length - 1 ))
+          for (j = 0; j < Math.sqrt( testDataMaxs.length - 1 ) ; j++ ) {
+            for ( m = 0; m < Math.sqrt( testDataMaxs.length - 1 )  ; m++) {
+              let testDataMax = testDataMaxs[Math.floor(Math.sqrt( testDataMaxs.length - 1 ) -1 ) * j + m ];
+              let testDataMin = testDataMins[Math.floor(Math.sqrt( testDataMaxs.length - 1) - 1 ) * j + m ];
+              maxAndMin.push(`${( j + 1 ) * baseTime }mS ~ ${( m + 1 ) * increaseTime}mS`);
               maxAndMin.push(testDataMax);
               maxAndMin.push(testDataMin);
               maxAndMin.push('\r\n');

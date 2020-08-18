@@ -1,6 +1,7 @@
 extends layout
 
 block content
+  h1 Dynamic Matrix Convert
   form(action="/uploadmatrix" method="post" enctype="multipart/form-data")
     label Dynamic base time mS 动态原始时间
     br
@@ -14,5 +15,5 @@ block content
     input(type="number" name="increasetime")
     br
     br
-    input(type="file" name="avatar")
+    input(type="file" name="dyn")
     button 上传

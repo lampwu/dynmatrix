@@ -26,7 +26,7 @@ router.post('/', upload.single('dyn'), function (req, res, next) {
   let sampleFile = req.file;
   let uploadFileName = req.file.name;
     //let uploadedBuffer = req.file.buffer;
-  fs.writeFile(`.\\some\\${req.file.name + Date.now() + '-' + Math.round(Math.random() * 1E9)}`, req.file.buffer, 'utf8', (err) => { //write file to some
+  fs.writeFile(`./some/${req.file.name + Date.now().toString() + '-' + Math.round(Math.random() * 1E9)}`, req.file.buffer, 'utf8', (err) => { //write file to some
     if (err) throw err;
     myEmitter.emit('finish');
   });
@@ -50,6 +50,8 @@ function dataConvert(sourceData,baseTime,increaseTime) {
   let testTime = '';
   let testNameAndOutPut = '';
   let finalData = [];
+  let maxAndMinTitle = [];
+
   for(i = 0; i<=sepData.length-5; i=i+4) {
       let maxAndMin = [];
       testTime = sepData[i];
@@ -57,6 +59,8 @@ function dataConvert(sourceData,baseTime,increaseTime) {
       testDataMaxs = sepData[i+2].split(';'); //split max output voltage
       testDataMins = sepData[i+3].split(';'); //split min output voltage
           console.log(testDataMaxs)
+	  maxAndMinTitle[0] = "Max";
+	  maxAndMinTitle[testDataMaxs[0].split(',').length] = "Min";
           console.log(testDataMaxs.length)
           console.log(Math.sqrt( testDataMaxs.length - 1 ))
           for (j = 0; j < Math.sqrt( testDataMaxs.length - 1 ) ; j++ ) {
@@ -69,21 +73,25 @@ function dataConvert(sourceData,baseTime,increaseTime) {
               maxAndMin.push('\r\n');
             }
           }
+      console.log(maxAndMin[maxAndMin.length - 2].length)
       finalData.push(testTime);
       finalData.push(testNameAndOutPut);
       finalData.push('\r\n');
       finalData.push('');
-      finalData.push('Max');
-      finalData.push('Min');
+      //maxAndMinTitle[0]= "Max";
+      //maxAndMinTitle[] = "Min";
+      finalData.push(maxAndMinTitle);
+      //finalData.push('Min');
       finalData.push('\r\n');
       finalData.push(maxAndMin);
       finalData.push('\r\n');
   }
   let finalDataString=finalData.join(',');
 
-  let currentTime = new Date().toLocaleString('zh-TW').split(':').join('-').split('/').join().split(',').join();
+  let currentTime = new Date().toString();
+  console.log(currentTime)
   currentFileName = `${currentTime}.csv`;
-  fs.writeFile(`.\\some\\${currentFileName}`, finalDataString, 'utf8', (err) => {
+  fs.writeFile(`./some/${currentFileName}`, finalDataString, 'utf8', (err) => {
     if (err) throw err;
     myEmitter.emit('finish');
   });

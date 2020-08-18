@@ -6,7 +6,7 @@ const path = require('path')
 /* GET convert listing. */
 router.get('/', (req, res) => {
     console.log(req.path)
-    let realDir = path.join('.\\some', req.path)
+    let realDir = path.join('./some', req.path)
     console.log(path.dirname(realDir))
     fs.readdir(realDir, 'utf8', (err, files) => {
         console.log(files)
@@ -18,7 +18,7 @@ router.get('/', (req, res) => {
 
 router.get(`/file/:id`, (req, res) => {
     console.log(req.params.id)
-    res.download(`.\\some\\${req.params.id}`);
+    res.download(`./some/${req.params.id}`);
 })
 
 module.exports = router;
